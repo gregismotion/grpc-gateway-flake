@@ -16,41 +16,27 @@
     in flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system overlays; };
-        
-        setup = pkgs.writeScriptBin "setup" ''
-          export GOPATH=$(pwd)/gopath
-          export SRC_PATH=$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway
-          mkdir -p $SRC_PATH
-          pushd $SRC_PATH
-          cp -r ${grpc-gateway-src}/* .
-          popd
-        '';
       in
       rec {
         packages = flake-utils.lib.flattenTree
         { 
-          protoc-gen-grpc-gateway = pkgs.buildGoApplication {
-              name = "protoc-gen-grpc-gateway";
-              src = "${grpc-gateway-src}/protoc-gen-grpc-gateway/";
-              modules = ./gomod2nix.toml;
-          };
-          protoc-gen-openapiv2 = pkgs.buildGoApplication {
-              name = "protoc-gen-openapiv2";
-              src = "${grpc-gateway-src}/protoc-gen-openapiv2/";
+          grpc-gateway = pkgs.buildGoApplication {
+              name = "grpc-gateway";
+              src = "${grpc-gateway-src}/";
               modules = ./gomod2nix.toml;
           };
         };
-
+        
+        defaultPackage = packages.grpc-gateway;
         devShell =
           pkgs.mkShell {
-            buildInputs = [ pkgs.gomod2nix setup ];
+            buildInputs = [ pkgs.gomod2nix ];
             packages = with pkgs; [
               go_1_17
             ];
           };
 
-        apps.protoc-gen-grpc-gateway = flake-utils.lib.mkApp { name = "protoc-gen-grpc-gateway"; drv = packages.protoc-gen-grpc-gateway; };
-        apps.protoc-gen-openapiv2 = flake-utils.lib.mkApp { name = "protoc-gen-openapiv2"; drv = packages.protoc-gen-openapiv2; };
+        apps.grpc-gateway = flake-utils.lib.mkApp { name = "grpc-gateway"; drv = packages.grpc-gateway; };
       });
 }
 
