@@ -24,6 +24,9 @@
               name = "grpc-gateway";
               src = "${grpc-gateway-src}/";
               modules = ./gomod2nix.toml;
+              postInstall = ''
+                cp -r ./protoc-gen-openapiv2/options $out/openapiv2
+              '';
           };
         };
         
