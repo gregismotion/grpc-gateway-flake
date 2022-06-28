@@ -37,17 +37,18 @@
     "grpc-gateway-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1656165512,
-        "narHash": "sha256-RoODVkJncw5f1t2jBvmG6TCLHHyc1Ev3EMsmFRf8MnA=",
-        "owner": "grpc-ecosystem",
-        "repo": "grpc-gateway",
-        "rev": "29414b07e7ed504a12d63e32fd7134b489fc8047",
-        "type": "github"
+        "lastModified": 1631061135,
+        "narHash": "sha256-PfLMvuHe/bsO3mmnqDQTd16kH39jKHNwlVDPoJh1I2c=",
+        "ref": "refs/tags/v2.6.0",
+        "rev": "f60dfa5c7b5fc2ce944f7625b551a63f8c4ea93e",
+        "revCount": 1657,
+        "type": "git",
+        "url": "https://github.com/grpc-ecosystem/grpc-gateway"
       },
       "original": {
-        "owner": "grpc-ecosystem",
-        "repo": "grpc-gateway",
-        "type": "github"
+        "ref": "refs/tags/v2.6.0",
+        "type": "git",
+        "url": "https://github.com/grpc-ecosystem/grpc-gateway"
       }
     },
     "nixpkgs": {

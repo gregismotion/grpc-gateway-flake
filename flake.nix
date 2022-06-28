@@ -5,7 +5,9 @@
     gomod2nix.url = "github:tweag/gomod2nix";
     grpc-gateway-src = {
       flake = false;
-      url = github:grpc-ecosystem/grpc-gateway;
+      type = "git";
+      url = "https://github.com/grpc-ecosystem/grpc-gateway";
+      ref = "refs/tags/v2.6.0";
     };
   };
 
